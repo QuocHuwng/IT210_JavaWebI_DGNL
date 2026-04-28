@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+<a href="/add">ADD</a>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Origin</th>
+        <th>Date</th>
+        <th>Action</th>
+    </tr>
+    <tr th:each="a : ${artifacts.content}">
+        <td th:text="${a.id}"></td>
+        <td th:text="${a.name}"></td>
+        <td th:text="${a.origin}"></td>
+        <td th:text="${a.date}"></td>
+        <td>
+            <a th:href="@{/edit/{id}(id=${a.id})}">Edit</a>
+            <a th:href="@{/delete/{id}(id=${a.id})}" onclick="return confirm ('Xoa')">Delete</a>
+        </td>
+    </tr>
+    <tr th:if="${artifacts.empty}">
+        <td colspan="5">Chua co du lieu</td>
+    </tr>
+</table>
+<a th:if="${artifacts.hasPrevious()}"
+   th:href="@{/(page=${artifacts.number -1 })}">Prev</a>
+<span th:text="${artifacts.number+1}"></span>
+<a th:if="${artifacts.hasNext()}"
+   th:href="@{/(page=${artifacts.number+1})}">Next </a>
+</body>
+</html>

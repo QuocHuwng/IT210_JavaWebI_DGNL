@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<form th:action="@{/save}" th:object="${artifact}" method="post">
+
+    Name: <input type="text" th:field="*{name}">
+    <p th:errors="*{name}"></p>
+
+    Origin: <input type="text" th:field="*{origin}">
+    <p th:errors="*{origin}"></p>
+
+    Date: <input type="date" th:field="*{date}">
+    <p th:errors="*{date}"></p>
+
+    <button type="submit">Save</button>
+</form>
+
+</body>
+</html>
